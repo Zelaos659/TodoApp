@@ -1,16 +1,17 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
+using TodoApp.Data;
 using TodoApp.Models;
 
 namespace TodoApp.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
-
-        public HomeController(ILogger<HomeController> logger)
+        AppDbContext db;
+        public HomeController(AppDbContext context)
         {
-            _logger = logger;
+            db = context;
         }
 
         public IActionResult Index()
@@ -22,15 +23,19 @@ namespace TodoApp.Controllers
         {
             return View();
         }
-        public IActionResult Test() 
+        public async Task<IActionResult> Tasks() 
         {
-            List<TodoTask> tasks = new List<TodoTask>()
-            {
-                new TodoTask { Id = 1, TaskName = "Убраться", isCompleted = true},
-                new TodoTask { Id = 2, TaskName = "Помыться"},
-                new TodoTask { Id = 3, TaskName = "Постираться"},
-            };
-            return View(tasks); 
+            //List<TodoTask> tasks = new List<TodoTask>()
+            //{
+            //    new TodoTask { Id = 1, TaskName = "Убраться", IsCompleted = true},
+            //    new TodoTask { Id = 2, TaskName = "Помыться"},
+            //    new TodoTask { Id = 3, TaskName = "Постираться"},
+            //};
+            return View(await db.todoTasks.ToListAsync()); 
+        }
+        public IActionResult Add() 
+        { 
+            return View(); 
         }
         public IActionResult Authorization() 
         {

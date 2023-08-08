@@ -1,3 +1,6 @@
+using Microsoft.EntityFrameworkCore;
+using TodoApp.Data;
+
 namespace TodoApp
 {
     public class Program
@@ -8,6 +11,10 @@ namespace TodoApp
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+            builder.Services.AddDbContext<AppDbContext>(options =>
+            {
+                options.UseNpgsql(builder.Configuration.GetConnectionString("Npgsql"));
+            });
 
             var app = builder.Build();
 
