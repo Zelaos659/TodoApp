@@ -1,0 +1,12 @@
+﻿.test{
+    background-color: black;
+    width: initial;
+}
+
+.test-2{
+    color: seagreen;
+}
+
+.test-2:hover{
+    color: aqua;
+}
