@@ -1,0 +1,17 @@
+﻿@model TodoTask
+@{
+    ViewData["Title"] = "Tasks";
+}
+
+
+<h2 class="">Добавление задачи</h2>
+
+<form asp-action="create" asp-controller="home">
+    <div class="mb-3">
+        <label class="form-label" asp-for="TaskName">Задача</label><br />
+        <input class="form-control w-25" type="text" asp-for="TaskName" />
+    </div>
+    <p>
+        <input class="btn btn-primary" type="submit" value="Добавить" />
+    </p>
+</form>

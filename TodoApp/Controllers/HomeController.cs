@@ -33,9 +33,16 @@ namespace TodoApp.Controllers
             //};
             return View(await db.todoTasks.ToListAsync()); 
         }
-        public IActionResult Add() 
+        public IActionResult Create() 
         { 
             return View(); 
+        }
+        [HttpPost]
+        public async Task<IActionResult> Create(TodoTask task) 
+        {
+            db.todoTasks.Add(task);
+            await db.SaveChangesAsync();
+            return RedirectToAction("Tasks");
         }
         public IActionResult Authorization() 
         {
