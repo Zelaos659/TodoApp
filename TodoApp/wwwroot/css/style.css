@@ -1,5 +1,5 @@
 ﻿.test{
-
+    display:none;
 }
 
 .test:hover{
@@ -7,7 +7,7 @@
 }
 
 .test:checked{
-    border-bottom: 3px solid black;
+
 }
 
 .test-2{

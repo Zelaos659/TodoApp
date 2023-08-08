@@ -6,17 +6,18 @@
 
 <div class="form_radio_group" role="group">
     <div class="form_radio_group-item">
-        <input type="radio" name="btnradio" id="btnTasks" checked autocomplete="off" />
+        <input onclick="Show(0)" type="radio" name="btnradio" id="btnTasks" checked autocomplete="off" />
         <label for="btnTasks">Все задачи</label>
     </div>
 
     <div class="form_radio_group-item">
-        <input type="radio" class="form_radio_group-item" name="btnradio" id="btnCompletedTasks" autocomplete="off" />
+        <input type="radio" onclick="Show(1)" class="form_radio_group-item" name="btnradio" id="btnCompletedTasks" autocomplete="off" />
         <label for="btnCompletedTasks">Завершённые</label>
     </div>
 
 </div>
 
+<div id="AllTasks">
 @if (Model.Count != 0)
 {
     <table class="table">
@@ -39,6 +40,34 @@ else
 {
     <p class="mb-3">У вас нет задач.</p>
 }
+</div>
+
+<div id="EndedTasks" class="visually-hidden">
+@if (Model.Select(t => t.IsCompleted = false).Count() < 0)
+{
+    <table class="table">
+        <tr><td>Id</td><td>Задача</td></tr>
+        @foreach (TodoTask task in Model)
+        {
+            @if (task.IsCompleted)
+            {
+                <tr>
+                    <td>@task.Id</td>
+                    <td>@task.TaskName</td>
+                    <td><input class="form-check-input text-center" disabled type="checkbox" checked="@task.IsCompleted" /></td>
+                    <td class="me-lg-5">sdasdas</td>
+                </tr>
+            }
+        }
+    </table>
+}
+else
+{
+    <p id="myDiv" class="mb-3">У вас нет завершённых задач.</p>
+
+}
+</div>
+
 <div class="btn-toolbar justify-content-between">
     <a class="btn btn-primary" role="button" asp-area="" asp-controller="Home" asp-action="Create">
         Добавить задачу
