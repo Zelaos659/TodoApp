@@ -31,3 +31,28 @@ function Show(a) {
         allTasks.classList.remove("visually-hidden");
     }
 }
+
+//var i = 0;
+
+//function DeleteTask() {
+//    i++;
+//    if (i == 2) {
+//        btn = document.getElementById("deleteBtn");
+//        btn. = "Вы уверены?";
+//    }
+//}
+
+
+//const deleteModal = document.getElementById('deleteModal')
+//if (deleteModal) {
+//    deleteModal.addEventListener('show.bs.modal', event => {
+//        const button = event.relatedTarget
+//        const id = button.getAttribute('data-id')
+//        const btn = deleteModal.querySelector('deleteBtn')
+//        alert(btn)
+//        const modalTitle = deleteModal.querySelector('.modal-title')
+//        const modalBodyInput = deleteModal.querySelector('.modal-body input')
+
+//        modalBodyInput.value = recipient
+//    })
+//}

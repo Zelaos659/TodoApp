@@ -1,29 +1,31 @@
-﻿.test{
-    display:none;
+﻿.test {
+    width: 100%;
+    font-size: 1rem;
+    border-spacing: 7px 5px;
+    margin: 0 0 10px 0;
+}
+
+.test th {
+    border-bottom: 3px solid black;
+    padding: 5px;
+}
+
+.test td {
+    padding: 10px;
+    margin: 5px 0 0 0;
+}
+
+.test tr:hover td {
+    border-bottom: 3px solid #0D6EFD;
+    background: #e1edff;
+}
+
+.test tr{
+
 }
 
 .test:hover{
 
-}
-
-.test:checked{
-
-}
-
-.test-2{
-    color: seagreen;
-}
-
-.test-2:hover{
-    color: aqua;
-}
-
-p a {
-    
-}
-
-p a:hover, a:focus {
-    background-size: 100% 2px;
 }
 
 .form_radio_group {
