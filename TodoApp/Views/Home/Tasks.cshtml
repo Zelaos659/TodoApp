@@ -20,21 +20,20 @@
 <div id="AllTasks">
 @if (Model.Select(t => t.IsCompleted == false).Count() != 0)
 {
-<table class="test">
-    <tr><th>Задача</th><th></th><th></th></tr>
-    @foreach (TodoTask task in Model)
-    {
-        @if (!task.IsCompleted)
+        <table class="simple-table">
+        <tr><th>Задача</th><th></th><th></th></tr>
+        @foreach (TodoTask task in Model)
         {
-            <tr>
-                <td width="100%">@task.TaskName</td>
-                <td nowrap><form><button class="btn btn-outline-primary">Выполнено</button></form></td>
-                @*<td nowrap><button class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#deleteModal" data-id="@task.Id">Удалить</button></td>*@
-                <td nowrap><button class="btn btn-outline-danger" id="@task.Id+wsss" onclick="DeleteTask()">Удалить</button></td>
-            </tr>
+            @if (!task.IsCompleted)
+            {
+                <tr>
+                    <td width="100%">@task.TaskName</td>
+                    <td nowrap><button class="btn btn-outline-primary btn-sm" id="@task.Id" name="Выполнено" onclick="CompleteTask(this)" onmouseout="MouseOutBtn(this)">Выполнено</button></td>
+                    <td nowrap><button class="btn btn-outline-danger btn-sm" id="@task.Id" name="Удалить" onclick="DeleteTask(this)" onmouseout="MouseOutBtn(this)">Удалить</button></td>
+                </tr>
+            }
         }
-    }
-</table>
+    </table>
 }
 else
 {
@@ -45,7 +44,7 @@ else
 <div id="EndedTasks" class="visually-hidden">
 @if (Model.Select(t => t.IsCompleted == true).Count() > 0)
 {
-        <table class="test">
+        <table class="simple-table">
         <tr><th>Задача</th><th></th><th></th></tr>
         @foreach (TodoTask task in Model)
         {
@@ -53,8 +52,8 @@ else
             {
                 <tr>
                     <td width="100%">@task.TaskName</td>
-                    <td nowrap><form><button class="btn btn-outline-primary">Выполнено</button></form></td>
-                    <td nowrap><button class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#deleteModal" data-id="@task.Id">Удалить</button></td>
+                    <td nowrap><button class="btn btn-outline-primary btn-sm" id="@task.Id" name="Выполнено" onclick="CompleteTask(this)" onmouseout="MouseOutBtn(this)">Выполнено</button></td>
+                    <td nowrap><button class="btn btn-outline-danger btn-sm" id="@task.Id" name="Удалить" onclick="DeleteTask(this)" onmouseout="MouseOutBtn(this)">Удалить</button></td>
                 </tr>
             }
         }
@@ -62,8 +61,7 @@ else
 }
 else
 {
-    <p id="myDiv" class="mb-3">У вас нет завершённых задач.</p>
-
+    <p class="mb-3">У вас нет завершённых задач.</p>
 }
 </div>
 
@@ -71,29 +69,6 @@ else
     <a class="btn btn-primary" role="button" asp-area="" asp-controller="Home" asp-action="Create">
         Добавить задачу
     </a>
-
-    
-</div>
-
-<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">Удалить задачу?</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
-            </div>
-            <div class="modal-body">
-                <div>Данная задача будет удалена.</div>
-                <div>Вы точно хотите это сделать?</div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
-                <form asp-action="delete" asp-controller="home">
-                    <button type="button" class="btn btn-danger" id="2222" name="deleteBtn">Удалить</button>
-                </form>
-            </div>
-        </div>
-    </div>
 </div>
 
 

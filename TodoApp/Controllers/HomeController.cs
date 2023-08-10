@@ -44,6 +44,14 @@ namespace TodoApp.Controllers
             await db.SaveChangesAsync();
             return RedirectToAction("Tasks");
         }
+        [HttpDelete]
+        public async Task<IActionResult> Delete(int id)
+        {
+            var task = await db.todoTasks.FindAsync(id);
+            db.todoTasks.Remove(task);
+            await db.SaveChangesAsync();
+            return RedirectToAction("Tasks");
+        }
         public IActionResult Authorization() 
         {
             return View();

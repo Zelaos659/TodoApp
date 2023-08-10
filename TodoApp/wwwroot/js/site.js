@@ -32,27 +32,30 @@ function Show(a) {
     }
 }
 
-//var i = 0;
+var confirm = 0;
 
-//function DeleteTask() {
-//    i++;
-//    if (i == 2) {
-//        btn = document.getElementById("deleteBtn");
-//        btn. = "Вы уверены?";
-//    }
-//}
+function CompleteTask(btn) {
+    AgreeClick(btn);
+    if (confirm == 2) {
+        alert(`${btn.id} завершён.`);
+        MouseOutBtn(btn);
+    }
+}
+function DeleteTask(btn) {
+    AgreeClick(btn);
+    if (confirm == 2) {
+        alert(`${btn.id} удалён.`);
+        MouseOutBtn(btn);
+    }
+}
 
+function MouseOutBtn(btn) {
+    confirm = 0;
+    btn.firstChild.data = btn.name;
+}
 
-//const deleteModal = document.getElementById('deleteModal')
-//if (deleteModal) {
-//    deleteModal.addEventListener('show.bs.modal', event => {
-//        const button = event.relatedTarget
-//        const id = button.getAttribute('data-id')
-//        const btn = deleteModal.querySelector('deleteBtn')
-//        alert(btn)
-//        const modalTitle = deleteModal.querySelector('.modal-title')
-//        const modalBodyInput = deleteModal.querySelector('.modal-body input')
-
-//        modalBodyInput.value = recipient
-//    })
-//}
+function AgreeClick(btn) {
+    var text = btn.firstChild;
+    text.data = "Вы уверены?";
+    confirm++;
+}
