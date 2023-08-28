@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Query;
 using System.Diagnostics;
 using TodoApp.Data;
 using TodoApp.Models;
@@ -44,6 +45,7 @@ namespace TodoApp.Controllers
             await db.SaveChangesAsync();
             return RedirectToAction("Tasks");
         }
+
         [HttpDelete]
         public async Task<IActionResult> Delete(int id)
         {
@@ -52,6 +54,13 @@ namespace TodoApp.Controllers
             await db.SaveChangesAsync();
             return RedirectToAction("Tasks");
         }
+
+        //[HttpPost]
+        //public async Task<IActionResult> Complete(int id)
+        //{
+
+        //}
+
         public IActionResult Authorization() 
         {
             return View();

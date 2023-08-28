@@ -54,3 +54,7 @@
 .form_radio_group label:hover {
     border-bottom: 2px solid #32557f;
 }
+
+.btn_width{
+    width: 100%;
+}

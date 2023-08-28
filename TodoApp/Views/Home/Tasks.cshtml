@@ -27,9 +27,9 @@
             @if (!task.IsCompleted)
             {
                 <tr>
-                    <td width="100%">@task.TaskName</td>
-                    <td nowrap><button class="btn btn-outline-primary btn-sm" id="@task.Id" name="Выполнено" onclick="CompleteTask(this)" onmouseout="MouseOutBtn(this)">Выполнено</button></td>
-                    <td nowrap><button class="btn btn-outline-danger btn-sm" id="@task.Id" name="Удалить" onclick="DeleteTask(this)" onmouseout="MouseOutBtn(this)">Удалить</button></td>
+                    <td width="80%">@task.TaskName</td>
+                    <td width="10%" nowrap><button class="btn btn-outline-primary btn-sm btn_width" id="@task.Id" name="Выполнено" onclick="CompleteTask(this)" onmouseout="MouseOutBtn(this)">Выполнено</button></td>
+                    <td width="10%" nowrap><button class="btn btn-outline-danger btn-sm btn_width" id="@task.Id" name="Удалить" onclick="DeleteTask(this)" onmouseout="MouseOutBtn(this)">Удалить</button></td>
                 </tr>
             }
         }
@@ -51,9 +51,9 @@ else
             @if (task.IsCompleted)
             {
                 <tr>
-                    <td width="100%">@task.TaskName</td>
-                    <td nowrap><button class="btn btn-outline-primary btn-sm" id="@task.Id" name="Выполнено" onclick="CompleteTask(this)" onmouseout="MouseOutBtn(this)">Выполнено</button></td>
-                    <td nowrap><button class="btn btn-outline-danger btn-sm" id="@task.Id" name="Удалить" onclick="DeleteTask(this)" onmouseout="MouseOutBtn(this)">Удалить</button></td>
+                    <td width="80%">@task.TaskName</td>
+                    <td width="10%" nowrap><button class="btn btn-outline-primary btn-sm btn_width" id="@task.Id" name="Выполнено" onclick="CompleteTask(this)" onmouseout="MouseOutBtn(this)">Выполнено</button></td>
+                    <td width="10%" nowrap><button class="btn btn-outline-danger btn-sm btn_width" id="@task.Id" name="Удалить" onclick="DeleteTask(this)" onmouseout="MouseOutBtn(this)">Удалить</button></td>
                 </tr>
             }
         }

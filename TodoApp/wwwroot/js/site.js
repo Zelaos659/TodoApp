@@ -34,18 +34,22 @@ function Show(a) {
 
 var confirm = 0;
 
+var url = `https://localhost:7197`;
+
 function CompleteTask(btn) {
     AgreeClick(btn);
     if (confirm == 2) {
         alert(`${btn.id} завершён.`);
         MouseOutBtn(btn);
+        //axios.post(`${url}/Home/Complete/${btn.id}`);
     }
 }
 function DeleteTask(btn) {
     AgreeClick(btn);
     if (confirm == 2) {
-        alert(`${btn.id} удалён.`);
+        //alert(`${btn.id} удалён.`);
         MouseOutBtn(btn);
+        axios.delete(`${url}/Home/Delete/${btn.id}`);
     }
 }
 
