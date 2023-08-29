@@ -37,6 +37,10 @@ namespace TodoApp
                 name: "default",
                 pattern: "{controller=Home}/{action=Index}/{id?}");
 
+            app.MapControllerRoute(
+                name: "asd",
+                pattern: "{controller=Tasks}/{action=Tasks}");
+
             app.Run();
         }
     }

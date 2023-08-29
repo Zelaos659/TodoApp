@@ -1,9 +1,9 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace TodoApp.Views.Home
+namespace TodoApp.Views.Tasks
 {
-    public class AddModel : PageModel
+    public class TasksModel : PageModel
     {
         public void OnGet()
         {

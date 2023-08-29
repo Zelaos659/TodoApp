@@ -39,17 +39,21 @@ var url = `https://localhost:7197`;
 function CompleteTask(btn) {
     AgreeClick(btn);
     if (confirm == 2) {
-        alert(`${btn.id} завершён.`);
         MouseOutBtn(btn);
-        //axios.post(`${url}/Home/Complete/${btn.id}`);
+        axios.put(`${url}/Tasks/Complete/${btn.id}`)
+            .then(response => alert(`Задача выполнена.`))
+            .catch(error => alert(`Ошибка.`));
+        reload_interval(500);
     }
 }
 function DeleteTask(btn) {
     AgreeClick(btn);
     if (confirm == 2) {
-        //alert(`${btn.id} удалён.`);
         MouseOutBtn(btn);
-        axios.delete(`${url}/Home/Delete/${btn.id}`);
+        axios.delete(`${url}/Tasks/Delete/${btn.id}`)
+            .then(response => alert(`Задача удалена.`))
+            .catch(error => alert(`Ошибка.`));
+        reload_interval(500);
     }
 }
 
@@ -62,4 +66,10 @@ function AgreeClick(btn) {
     var text = btn.firstChild;
     text.data = "Вы уверены?";
     confirm++;
+}
+
+function reload_interval(time) {
+    setTimeout(function () {
+        location.reload();
+    }, time);
 }
