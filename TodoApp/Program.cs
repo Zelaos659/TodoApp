@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using TodoApp.Data;
+using TodoApp.Extensions;
 using TodoApp.Models;
 
 namespace TodoApp
@@ -19,8 +20,19 @@ namespace TodoApp
             });
 
             builder.Services.AddIdentity<User, IdentityRole>()
+                .AddErrorDescriber<CustomIdentityErrorDescriber>()
                 .AddEntityFrameworkStores<AppDbContext>()
                 .AddDefaultTokenProviders();
+
+            builder.Services.Configure<IdentityOptions>(options =>
+            {
+                options.Password.RequireDigit = true;
+                options.Password.RequireNonAlphanumeric = false;
+                options.Password.RequireUppercase = false;
+                options.Password.RequireLowercase = false;
+                options.Password.RequiredLength = 6;
+                options.Password.RequiredUniqueChars = 0;
+            });
 
             var app = builder.Build();
 
@@ -37,15 +49,12 @@ namespace TodoApp
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.MapControllerRoute(
                 name: "default",
                 pattern: "{controller=Home}/{action=Index}/{id?}");
-
-            app.MapControllerRoute(
-                name: "asd",
-                pattern: "{controller=Tasks}/{action=Tasks}");
 
             app.Run();
         }

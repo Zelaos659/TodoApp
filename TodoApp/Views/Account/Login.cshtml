@@ -1,0 +1,35 @@
+﻿@{
+    ViewData["Title"] = "Authorization";
+}
+
+<div class="row">
+    <div class="col-6">
+        <h2>Авторизация</h2>
+    </div>
+    <div class="col-6 align-items-center d-flex justify-content-end">
+        <div class="btn-group">
+            <button class="btn btn-secondary disabled">Авторизироваться</button>
+            <a asp-controller="Account" asp-action="Register" class="btn btn-outline-secondary">Зарегистрироваться</a>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <form method="post" asp-controller="Account" asp-action="Login">
+    <div class="col m-auto">
+        <div class="mb-3">
+            <label for="loginInput" class="form-label">Логин</label>
+            <input type="email" class="form-control" id="loginInput">
+        </div>
+        <div class="mb-3">
+            <label for="passwordInput" class="form-label">Пароль</label>
+            <input type="password" class="form-control" id="passwordInput">
+        </div>
+        <div id="labErr" class="mb-3 alert-danger form-label visually-hidden">
+            <label>Неверно введены данные</label>
+        </div>
+            
+    </div>
+    </form>
+</div>
+

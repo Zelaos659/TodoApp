@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Query;
 using System.Diagnostics;
@@ -7,17 +8,20 @@ using TodoApp.Models;
 
 namespace TodoApp.Controllers
 {
-    public class TasksController : Controller
+    //[Authorize]
+    public class TaskController : Controller
     {
-        AppDbContext db;
-        public TasksController(AppDbContext context)
+        private readonly AppDbContext db;
+        public TaskController(AppDbContext context)
         {
             db = context;
         }
+        [HttpGet]
         public async Task<IActionResult> Index()
         {
             return View(await db.todoTasks.ToListAsync());
         }
+        [HttpGet]
         public IActionResult Create()
         {
             return View();
@@ -27,16 +31,16 @@ namespace TodoApp.Controllers
         {
             db.todoTasks.Add(task);
             await db.SaveChangesAsync();
-            return RedirectToAction("Tasks");
+            return RedirectToAction("Index");
         }
 
-        [HttpDelete]
+        [HttpPost]
         public async Task<IActionResult> Delete(int id)
         {
             var task = await db.todoTasks.FindAsync(id);
             db.todoTasks.Remove(task);
             await db.SaveChangesAsync();
-            return RedirectToAction("Tasks");
+            return RedirectToAction("Index");
         }
 
         [HttpPut]
@@ -45,7 +49,7 @@ namespace TodoApp.Controllers
             var task = await db.todoTasks.FindAsync(id);
             task.IsCompleted = true;
             await db.SaveChangesAsync();
-            return RedirectToAction("Tasks");
+            return RedirectToAction("Index");
         }
     }
 }

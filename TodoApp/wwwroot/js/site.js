@@ -40,7 +40,7 @@ function CompleteTask(btn) {
     AgreeClick(btn);
     if (confirm == 2) {
         MouseOutBtn(btn);
-        axios.put(`${url}/Tasks/Complete/${btn.id}`)
+        axios.put(`${url}/Task/Complete/${btn.id}`)
             .then(response => alert(`Задача выполнена.`))
             .catch(error => alert(`Ошибка.`));
         reload_interval(500);
@@ -50,7 +50,7 @@ function DeleteTask(btn) {
     AgreeClick(btn);
     if (confirm == 2) {
         MouseOutBtn(btn);
-        axios.delete(`${url}/Tasks/Delete/${btn.id}`)
+        axios.delete(`${url}/Task/Delete/${btn.id}`)
             .then(response => alert(`Задача удалена.`))
             .catch(error => alert(`Ошибка.`));
         reload_interval(500);

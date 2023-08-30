@@ -1,0 +1,49 @@
+﻿@model TodoApp.ViewModels.RegisterViewModel
+@{
+    ViewData["Title"] = "Authorization";
+}
+
+<div class="row">
+    <div class="col-6">
+        <h2>Регистрация</h2>
+    </div>
+    <div class="col-6 align-items-center d-flex justify-content-end">
+        <div class="btn-group">
+            <a asp-controller="Account" asp-action="Login" class="btn btn-outline-secondary">Авторизироваться</a>
+            <button class="btn btn-secondary disabled">Зарегистрироваться</button>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-6">
+        <form method="post" asp-controller="Account" asp-action="Register" autocomplete="off">
+            <div class="mb-3">
+                <label asp-for="Username" class="form-label"></label><br />
+                <input asp-for="Username" class="form-control @(Html.ViewData.ModelState["Username"]?.Errors.Count > 0 ? "alert-danger" : "")" />
+                <span asp-validation-for="Username"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="Password" class="form-label"></label><br />
+                <input asp-for="Password" class="form-control @(Html.ViewData.ModelState["Password"]?.Errors.Count > 0 ? "alert-danger" : "")" />
+                <span asp-validation-for="Password"></span>
+                <div class="text-danger test" asp-validation-summary="ModelOnly"></div>
+            </div>
+            <div class="mb-3">
+                <label asp-for="PasswordConfirm" class="form-label"></label><br />
+                <input asp-for="PasswordConfirm" class="form-control @(Html.ViewData.ModelState["PasswordConfirm"]?.Errors.Count > 0 ? "alert-danger" : "")" />
+                <span asp-validation-for="PasswordConfirm"></span>
+            </div>
+            <div class="mb-3 d-flex justify-content-between">
+                <input class="btn btn-primary" type="submit" value="Регистрация" />
+                <div class="btn-group">
+                    <a asp-controller="Account" asp-action="Login" class="btn btn-outline-secondary">Авторизироваться</a>
+                    <button class="btn btn-secondary disabled">Зарегистрироваться</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="col-6">
+    </div>
+</div>
+

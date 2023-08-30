@@ -58,3 +58,11 @@
 .btn_width{
     width: 100%;
 }
+
+.test{
+    list-style-type: none;
+}
+
+.test li {
+    list-style-type: none;
+}
