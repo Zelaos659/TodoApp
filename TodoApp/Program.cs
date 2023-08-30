@@ -1,5 +1,7 @@
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using TodoApp.Data;
+using TodoApp.Models;
 
 namespace TodoApp
 {
@@ -15,6 +17,10 @@ namespace TodoApp
             {
                 options.UseNpgsql(builder.Configuration.GetConnectionString("Npgsql"));
             });
+
+            builder.Services.AddIdentity<User, IdentityRole>()
+                .AddEntityFrameworkStores<AppDbContext>()
+                .AddDefaultTokenProviders();
 
             var app = builder.Build();
 

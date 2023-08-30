@@ -14,7 +14,7 @@ namespace TodoApp.Controllers
         {
             db = context;
         }
-        public async Task<IActionResult> Tasks()
+        public async Task<IActionResult> Index()
         {
             return View(await db.todoTasks.ToListAsync());
         }
