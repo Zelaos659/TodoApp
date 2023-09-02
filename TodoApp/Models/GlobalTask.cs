@@ -1,22 +1,14 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Xml.Linq;
 
 namespace TodoApp.Models
 {
-    public class TodoTask
+    public class GlobalTask //: Task
     {
         public int Id { get; set; }
         [Required(ErrorMessage = "Не может быть пустым")]
         [Display(Name = "Задача")]
         public string? TaskName { get; set; }
-        [Display(Name = "Описание задачи")]
-        public string? Description { get; set; }
         public bool IsCompleted { get; set; }
-        //public TaskType TaskType { get; set; }
-    }
-    public enum TaskType
-    {
-        Single,
-        Multi,
-        UntilDay
     }
 }

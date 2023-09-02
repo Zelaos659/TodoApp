@@ -1,7 +1,7 @@
 ﻿@using TodoApp.Models
-@model List<TodoTask>
+@model List<GlobalTask>
 @{
-    ViewData["Title"] = "Задачи";
+    ViewData["Title"] = "Админ панель";
 }
 
 <div class="form_radio_group" role="group">
@@ -22,7 +22,7 @@
     {
         <table class="simple-table">
             <tr><th>Задача</th><th></th><th></th></tr>
-            @foreach (TodoTask task in Model)
+            @foreach (GlobalTask task in Model)
             {
                 @if (!task.IsCompleted)
                 {
@@ -46,7 +46,7 @@
     {
         <table class="simple-table">
             <tr><th>Задача</th><th></th><th></th></tr>
-            @foreach (TodoTask task in Model)
+            @foreach (GlobalTask task in Model)
             {
                 @if (task.IsCompleted)
                 {
@@ -68,9 +68,7 @@
 
 
 <div class="btn-toolbar justify-content-between">
-    <a class="btn btn-primary" role="button" asp-area="" asp-controller="Task" asp-action="Create">
+    <a class="btn btn-primary" role="button" asp-area="" asp-controller="Admin" asp-action="CreateTask">
         Добавить задачу
     </a>
 </div>
-
-

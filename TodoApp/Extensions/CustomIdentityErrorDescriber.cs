@@ -21,5 +21,14 @@ namespace TodoApp.Extensions
                 Description = $"Пароль должен содержать как минимум {length} символов."
             };
         }
+
+        public override IdentityError DuplicateUserName(string userName)
+        {
+            return new IdentityError
+            {
+                Code = nameof(DuplicateUserName),
+                Description = $"Пользователь {userName} уже существует."
+            };
+        }
     }
 }

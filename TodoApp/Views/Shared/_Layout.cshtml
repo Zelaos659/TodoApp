@@ -21,16 +21,18 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Task" asp-action="Index">Мои задачи</a>
                         </li>
                     </ul>
-                    <ul class="navbar-nav flex-column-reverse">
+                    <ul class="navbar-nav flex-row-reverse">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Login">Account</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="@(User.Identity.IsAuthenticated ? "Index" : "Login")">Профиль</a>
                         </li>
+                        @if(User.IsInRole("Admin")){
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="Index">Админ панель</a>
+                            </li>
+                        }
                     </ul>
                 </div>
             </div>

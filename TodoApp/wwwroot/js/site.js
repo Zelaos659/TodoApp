@@ -50,7 +50,7 @@ function DeleteTask(btn) {
     AgreeClick(btn);
     if (confirm == 2) {
         MouseOutBtn(btn);
-        axios.delete(`${url}/Task/Delete/${btn.id}`)
+        axios.post(`${url}/Task/Delete/${btn.id}`)
             .then(response => alert(`Задача удалена.`))
             .catch(error => alert(`Ошибка.`));
         reload_interval(500);

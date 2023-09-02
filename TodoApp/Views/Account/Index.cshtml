@@ -1,4 +1,11 @@
-﻿@page
-@model TodoApp.Views.Account.IndexModel
-@{
+﻿@{
+    ViewData["Title"] = "Profile";
+}
+
+@if(User.Identity.IsAuthenticated){
+    <p>@User.Identity.Name</p>
+    <p>@User.Identity.IsAuthenticated</p>
+    <form method="post" asp-controller="Account" asp-action="Logout">
+        <input type="submit" value="Выход" />
+    </form>
 }

@@ -1,4 +1,5 @@
-﻿@{
+﻿@model TodoApp.ViewModels.LoginViewModel
+@{
     ViewData["Title"] = "Authorization";
 }
 
@@ -8,28 +9,38 @@
     </div>
     <div class="col-6 align-items-center d-flex justify-content-end">
         <div class="btn-group">
-            <button class="btn btn-secondary disabled">Авторизироваться</button>
+            <button class="btn btn-secondary" disabled>Авторизироваться</button>
             <a asp-controller="Account" asp-action="Register" class="btn btn-outline-secondary">Зарегистрироваться</a>
         </div>
     </div>
 </div>
 
 <div class="row">
-    <form method="post" asp-controller="Account" asp-action="Login">
-    <div class="col m-auto">
+    <div class="col-6">
+        <form method="post" asp-controller="Account" asp-action="Login" autocomplete="off">
         <div class="mb-3">
-            <label for="loginInput" class="form-label">Логин</label>
-            <input type="email" class="form-control" id="loginInput">
+            <label asp-for="Username" class="form-label"></label><br/>
+            <input asp-for="Username" class="form-control" />
+            <span asp-validation-for="Username"></span>
         </div>
         <div class="mb-3">
-            <label for="passwordInput" class="form-label">Пароль</label>
-            <input type="password" class="form-control" id="passwordInput">
+            <label asp-for="Password" class="form-label">Пароль</label>
+            <input asp-for="Password" class="form-control" />
+            <span asp-validation-for="Password"></span>
         </div>
-        <div id="labErr" class="mb-3 alert-danger form-label visually-hidden">
-            <label>Неверно введены данные</label>
+            <div class="text-danger test" asp-validation-summary="ModelOnly"></div>
+        <div class="form-check form-switch mb-3">
+            <input asp-for="RememberMe" class="form-check-input"/>
+            <label asp-for="RememberMe" class="form-check-label"></label><br />
         </div>
-            
-    </div>
+        <div class="mb-3 d-flex justify-content-between">
+            <input type="submit" class="btn btn-primary" value="Войти" />
+            <div class="btn-group">
+                <button class="btn btn-secondary" disabled>Авторизироваться</button>
+                <a asp-controller="Account" asp-action="Register" class="btn btn-outline-secondary">Зарегистрироваться</a>
+            </div>
+        </div>
     </form>
+    </div>
 </div>
 

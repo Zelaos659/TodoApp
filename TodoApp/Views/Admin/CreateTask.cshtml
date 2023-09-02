@@ -1,4 +1,4 @@
-﻿@model TodoTask
+﻿@model GlobalTask
 @{
     ViewData["Title"] = "Создание задачи";
 }
@@ -6,7 +6,7 @@
 
 <h2 class="">Добавление задачи</h2>
 
-<form asp-action="Create" asp-controller="Task" autocomplete="off">
+<form asp-action="CreateTask" asp-controller="Admin" autocomplete="off">
     <div class="mb-3">
         <label class="form-label" asp-for="TaskName">Задача</label><br />
         <input class="form-control w-25" type="text" asp-for="TaskName" />

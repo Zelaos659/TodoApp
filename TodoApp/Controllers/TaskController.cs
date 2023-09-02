@@ -8,7 +8,7 @@ using TodoApp.Models;
 
 namespace TodoApp.Controllers
 {
-    //[Authorize]
+    [Authorize]
     public class TaskController : Controller
     {
         private readonly AppDbContext db;
