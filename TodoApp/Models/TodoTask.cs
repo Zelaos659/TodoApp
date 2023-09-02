@@ -11,6 +11,8 @@ namespace TodoApp.Models
         [Display(Name = "Описание задачи")]
         public string? Description { get; set; }
         public bool IsCompleted { get; set; }
+        public string? UserId { get; set; }
+        public User? User { get; set; }
         //public TaskType TaskType { get; set; }
     }
     public enum TaskType

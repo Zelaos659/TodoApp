@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Query;
 using System.Diagnostics;
+using System.Security.Claims;
 using TodoApp.Data;
 using TodoApp.Models;
 
@@ -19,7 +20,8 @@ namespace TodoApp.Controllers
         [HttpGet]
         public async Task<IActionResult> Index()
         {
-            return View(await db.todoTasks.ToListAsync());
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            return View(await db.todoTasks.Where(id => id.UserId == userId).ToListAsync());
         }
         [HttpGet]
         public IActionResult Create()
@@ -29,9 +31,15 @@ namespace TodoApp.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(TodoTask task)
         {
-            db.todoTasks.Add(task);
-            await db.SaveChangesAsync();
-            return RedirectToAction("Index");
+            if (ModelState.IsValid)
+            {
+                var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+                task.UserId = userId;
+                db.todoTasks.Add(task);
+                await db.SaveChangesAsync();
+                return RedirectToAction("Index");
+            }
+            return View(task);
         }
 
         [HttpPost]
