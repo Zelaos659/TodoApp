@@ -50,7 +50,7 @@ namespace TodoApp.Controllers
             await db.SaveChangesAsync();
             return RedirectToAction("Index");
         }
-
+        
         [HttpPut]
         public async Task<IActionResult> Complete(int id)
         {
